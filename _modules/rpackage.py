@@ -41,7 +41,7 @@ import re
 
 log = logging.getLogger(__name__)
 
-def _parse_verison(package):
+def _parse_version(package):
     '''
     Given a package string checks if there's specific version to install
      and if so returns [package,version].  Otherwise it returns [package,'none'].
@@ -96,7 +96,7 @@ def pkg_version(package):
         log.debug(debug_message)
         return debug_message
 
-    pkg,version = _parse_verison(package)
+    pkg,version = _parse_version(package)
 
     cmd = "/usr/bin/R --silent -e \"packageVersion('{0}')\" | grep \"\[\"".format(pkg)
 
@@ -128,7 +128,7 @@ def install(package, repo = None, build_options = None):
         log.debug(debug_message)
         return debug_message
 
-    pkg,version = _parse_verison(package)
+    pkg,version = _parse_version(package)
 
     debug_message = 'Post parsed name: {0}, version: {1}'.format(pkg,version)
     log.debug(debug_message)
